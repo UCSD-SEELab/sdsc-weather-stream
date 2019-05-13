@@ -83,3 +83,49 @@ Change the weighted model optimizer to adam as in #10, epoch is stil 500
 Weather prediction mse: 231409711
 Stationary prediction mse: 136445471
 Combined prediction mse:130199285
+
+### Date: May 12
+# 12
+Fix the dataset problem of 5/1. Run on all the models.
+Weather: layer 1 = 32, layer 2 = 32, layer 3 = 32. All activation = relu, optimizer = adam. Decay = 0, batch=10, epoch=200
+
+Stationary: layer 1 = 32, layer 2 = 32, layer 3 = 32. All activation = relu, optimizer = adam(lr=0.001,beta_1=0.9,beta_2=0.999,epsilon=None,decay=0.001,amsgrad=False). Decay = 0, batch = 16, epochs=200
+
+Weighted function: layer 1 = 50, activation = relu, optimizer = adam as stationary.
+
+Weather prediction MSE: 32921509
+Stationary prediction MSE: 207416103
+Combined prediction MSE: 31861512
+
+# 13
+Model structures remain the same. 
+Change all the optimizer to adadelta (lr=1.0, rho=0.95, epsilon=None, decay=0.0)
+Weather prediction mse: 31020028
+Stationary prediction mse: 86454986
+Weighted prediction mse:29268395
+
+# 14 
+Dataset: combine 5/1 and 4/20 dataset. 5/1 is the one when wearable was outside, and 4/20 was one when wearable was inside.
+Change optimizer of Stationary to adagrad
+Weather prediction mse: 31935871
+Stationary prediction mse: 526951928
+Weighted prediction mse: 32291921
+
+# 15 
+Dataset: same as the #14.
+Change optimizer of Stationary back to adadelta
+Weather prediction mse: 30064760
+Stationary prediction mse: 165222933
+Weighted prediction mse: 28063959
+
+# 16
+Use lasso regression for stationary and random forest for weather 
+Weather prediction mse: 17380771
+Stationary prediction mse: 269957296
+Weighted prediction mse: 17850128
+
+# 17 
+Use both random forest for weather and stationary
+Weather prediction mse: 15093254
+Stationary prediction mse: 146166904
+Weighted prediction mse: 26663110
